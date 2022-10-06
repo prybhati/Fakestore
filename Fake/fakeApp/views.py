@@ -8,18 +8,19 @@ def home(request):
     import re
 
     r = requests.get('https://fakestoreapi.com/products')
-    product = r.json()
+    dataset = r.json()
 
-    df = pd.DataFrame(product)
-    mean=df["price"].mean()
-    median=df["price"].median()
-    std=df["price"].std()
-    mode=df["price"].mode().to_string(index=False)
+    df = pd.DataFrame(dataset)
+    mean = df["price"].mean()
+    median = df["price"].median()
+    std = df["price"].std()
+    mode = df["price"].mode().to_string(index=False)
+
     des = df["description"]
-    data = "".join(des)
+    desc_data = "".join(des)
     # to remove special char
-    nstr = re.sub(r'[?|$|.|!|/|-]', r'', data)
-    split = nstr.split()
+    desc_without_special_char = re.sub(r'[?|$|.|!|/|-]', r'', data)
+    split = desc_without_special_char.split()
     count = Counter(split)
     comm = count.most_common(20)
     desc = []
