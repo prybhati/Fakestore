@@ -19,7 +19,7 @@ def home(request):
     des = df["description"]
     desc_data = "".join(des)
     # to remove special char
-    desc_without_special_char = re.sub(r'[?|$|.|!|/|-]', r'', data)
+    desc_without_special_char = re.sub(r'[?|$|.|!|/|-]', r'', desc_data)
     split = desc_without_special_char.split()
     count = Counter(split)
     comm = count.most_common(20)
